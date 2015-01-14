@@ -7,7 +7,7 @@ class NewVisitorTest(unittest.TestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
-        self.browser.implicitly_wait(5)
+        self.browser.implicitly_wait(3)
 
     def tearDown(self):
         self.browser.quit()
@@ -30,21 +30,28 @@ class NewVisitorTest(unittest.TestCase):
         # He types "Buy milk!" into text box
         # When he hits enter the page updates, and now the
         # page lists: "1. Buy milk! " as an item in a to-do list
-        inputbox.send_keys('Buy milk!!! ')
+        inputbox.send_keys("Buy milk!!!")
+        inputbox.send_keys(Keys.ENTER)
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(any(row.text == '1: Buy milk!!!' for row in rows))
+        self.assertIn('1: Buy milk!!!', [row.text for row in rows])
 
         # There is still a test mox inviting him to add another item
         # He enters "Learn to code" and presses enter again
-        self.fail('Finish the test')
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox.send_keys("Learn to code")
+        inputbox.send_keys(Keys.ENTER)
 
         # The page updates and now lists both items
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn('1: Buy milk!!!', [row.text for row in rows])
+        self.assertIn('2: Learn to code', [row.text for row in rows])
 
         # He wonders if the site remembers his items and sees
         # that it generates a unique url for him
-
+        self.fail("finish the test")
         # He visits that URL and sees that everything is still there
 
         # Satisfied, he goes back to sleep
