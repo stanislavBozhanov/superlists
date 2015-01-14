@@ -34,7 +34,7 @@ class NewVisitorTest(unittest.TestCase):
         inputbox.send_keys('Buy milk!!! ')
 
         table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_element_by_tag_name('tr')
+        rows = table.find_elements_by_tag_name('tr')
         self.assertTrue(any(row.text == '1: Buy milk!!!' for row in rows))
 
         # There is still a test mox inviting him to add another item
