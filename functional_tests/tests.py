@@ -79,7 +79,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         # Again there is no trace of Sten's list
         page_text = self.browser.find_element_by_tag_name('body').text
-        self.assertNotIn('Write homework', page_text)
-        self.assertIn('to code', page_text)
+        self.assertNotIn('to code', page_text)
+        self.assertIn('Write homework', page_text)
 
         # Satisfied, they both go back to sleep
