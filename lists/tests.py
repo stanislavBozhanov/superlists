@@ -76,8 +76,8 @@ class ListViewTests(TestCase):
         other_list = List.objects.create()
         correct_list = List. objects.create()
 
-        response = self.client.get('/lists/%d/' % (correct_list,))
-        self.assertEqual(response.content['list'], correct_list)
+        response = self.client.get('/lists/%d/' % (correct_list.id,))
+        self.assertEqual(response.context['list'], correct_list)
 
 
 class NewListTest(TestCase):
