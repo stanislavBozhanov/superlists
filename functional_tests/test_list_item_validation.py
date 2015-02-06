@@ -15,7 +15,7 @@ class ItemValidationTest(FunctionaTest):
         self.assertEqual(error.text, "You can't have an empty list item")
 
         # she tries some text and it works
-        self.browser.find_element_by_id('id_new_item').send_keys('1: Buy milk\n')
+        self.browser.find_element_by_id('id_new_item').send_keys('Buy milk\n')
         self.check_for_row_in_list_table('1: Buy milk')
 
         # she tries again blank and get similar Warning
@@ -25,6 +25,6 @@ class ItemValidationTest(FunctionaTest):
         self.assertEqual(error.text, "You can't have an empty list item")
 
         # and she corrects it by filling some text
-        self.browser.find_element_by_id('id_new_item').send_keys('2: Make tea\n')
+        self.browser.find_element_by_id('id_new_item').send_keys('Make tea\n')
         self.check_for_row_in_list_table('1: Buy milk')
         self.check_for_row_in_list_table('2: Make tea')
