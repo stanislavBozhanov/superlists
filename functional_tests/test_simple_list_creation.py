@@ -17,7 +17,7 @@ class NewVisitorTest(FunctionaTest):
         self.assertIn('To-Do', header_text)
 
         # He is invited to enter To-Do item stright away
-        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox = self.get_item_input_box()
         self.assertEqual(inputbox.get_attribute('placeholder'), 'Enter a to-do item')
 
         # He types "Buy milk!" into text box
@@ -32,7 +32,7 @@ class NewVisitorTest(FunctionaTest):
 
         # There is still a test mox inviting him to add another item
         # He enters "Learn to code" and presses enter again
-        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox = self.get_item_input_box()
         inputbox.send_keys('Learn to code')
         inputbox.send_keys(Keys.ENTER)
 
@@ -56,7 +56,7 @@ class NewVisitorTest(FunctionaTest):
 
         # Anna starts a new list entering a new item. She is less intersing
 
-        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox = self.get_item_input_box()
         inputbox.send_keys('Write homework')
         inputbox.send_keys(Keys.ENTER)
 
